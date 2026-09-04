@@ -30,10 +30,11 @@ public class LocationService {
 
     public void updateDriverLocation(DriverLocationRequest driverLocationRequest){
         log.info("Updating location for driver: {}",driverLocationRequest.getDriverId());
-        //IMPORTANT: longitude FIRST,latitude Second - GeoSpatial Standard
+        //IMPORTANT: longitude FIRST, latitude Second - GeoSpatial Standard
+        // Point(x, y) where x = longitude, y = latitude
         Point driverPoint = new Point(
-                driverLocationRequest.getLatitude(),
-                driverLocationRequest.getLongitude()
+                driverLocationRequest.getLongitude(),
+                driverLocationRequest.getLatitude()
         );
         redisTemplate.opsForGeo().add(
                 DRIVERS_GEO_KEY,

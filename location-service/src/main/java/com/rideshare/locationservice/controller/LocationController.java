@@ -3,6 +3,7 @@ package com.rideshare.locationservice.controller;
 import com.rideshare.locationservice.dto.DriverLocationRequest;
 import com.rideshare.locationservice.dto.NearByDriverResponse;
 import com.rideshare.locationservice.service.LocationService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +20,7 @@ public class LocationController {
 
     //Driver calls this every 3 second
     @PostMapping("/drivers/update")
-    public ResponseEntity<String> updateDriverLocation(@RequestBody DriverLocationRequest driverLocationRequest){
+    public ResponseEntity<String> updateDriverLocation(@Valid @RequestBody DriverLocationRequest driverLocationRequest){
         locationService.updateDriverLocation(driverLocationRequest);
         return ResponseEntity.ok("Driver Location Updated");
     }
